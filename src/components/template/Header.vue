@@ -12,7 +12,7 @@ export default {
 
 <style>
     .header{
-        background: linear-gradient(to right, #4CA1AF, red);
+        background: linear-gradient(to right, #4CA1AF, #C4E0E5);
         grid-area: header;
 
         display: flex;
