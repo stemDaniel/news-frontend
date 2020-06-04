@@ -36,7 +36,7 @@ export default {
         display: flex;
         flex-direction: row;
         text-decoration: none;
-        color: #00c;
+        color: #000;
 
         border-radius: 8px;
         background-color: #FFF;
