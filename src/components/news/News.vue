@@ -30,8 +30,9 @@ export default {
     },
     methods: {
         getNews(source = null){
-            if(source) axios.get(`http://localhost:3000/api/news-by-source/${source}`).then(res => this.newsList = res.data.articles)
-            else axios.get('http://localhost:3000/api/news').then(res => this.newsList = res.data.articles)
+            const baseApiUrl = 'http://localhost:3000'
+            if(source) axios.get(`${baseApiUrl}/api/news-by-source/${source}`).then(res => this.newsList = res.data.articles)
+            else axios.get(`${baseApiUrl}/api/news`).then(res => this.newsList = res.data.articles)
         }
     },
     watch: {
