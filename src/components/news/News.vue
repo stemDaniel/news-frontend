@@ -30,11 +30,8 @@ export default {
     },
     methods: {
         getNews(source = null){
-            const headers = {'Authorization':'bearer 1d4c72910ba54321b8601c9a91fafd52'}
-            const url = source ? 
-                `https://newsapi.org/v2/top-headlines?sources=${source}` :
-                'https://newsapi.org/v2/top-headlines?country=br'
-            axios.get(url, {headers}).then(res => this.newsList = res.data.articles)
+            if(source) axios.get(`http://localhost:3000/api/news-by-source/${source}`).then(res => this.newsList = res.data.articles)
+            else axios.get('http://localhost:3000/api/news').then(res => this.newsList = res.data.articles)
         }
     },
     watch: {
