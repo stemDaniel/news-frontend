@@ -51,8 +51,8 @@ export default {
     },
     methods: {
         getNews(source = null, query = null){
-            //const baseApiUrl = 'https://news-proxy.now.sh'
-            const baseApiUrl = 'http://localhost:3000'
+            const baseApiUrl = 'https://news-proxy.now.sh'
+            //const baseApiUrl = 'http://localhost:3000'
             
             if(source) axios.get(`${baseApiUrl}/api/news-by-source/${source}`).then(res => this.newsList = res.data.articles)
             else if(query) axios.get(`${baseApiUrl}/api/news-by-search/${query}`).then(res => this.newsList = res.data.articles)
