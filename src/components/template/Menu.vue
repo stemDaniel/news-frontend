@@ -1,5 +1,18 @@
 <template>
     <div class="menu">
+        <div class="menu-searches">
+            <span>Pesquisa</span>
+            <div class="search-group">
+                <input class="search-input" type="text" name="newsSearch" value="" />
+                <button class="search-button">Ok</button>
+            </div>
+            <span>Pesquisas Salvas</span>
+            <ul>
+                <li @click="changeSection('globo', 'Globo', 1)">Tecnlogia</li>
+                <li @click="changeSection('abc-news', 'ABC News', 2)">Gastronomia</li>
+                <li @click="changeSection('bbc-sport', 'BBC Sport', 3)">Economia</li>
+            </ul>
+        </div>
         <div class="menu-categories">
             <span>Categorias</span>
             <ul>
