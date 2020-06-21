@@ -16,6 +16,11 @@ const routes = [
         path: '/',
         component: News
     },
+    {
+        name: 'newsBySearch',
+        path: '/:search',
+        component: News
+    }
 ]
 
 const router = new VueRouter({

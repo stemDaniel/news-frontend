@@ -2,8 +2,8 @@
     <div class="menu">
         <div class="menu-searches">
             <div class="search-group">
-                <input placeholder="Pesquisar..." class="search-input" type="text" name="newsSearch" value="" />
-                <button class="search-button">Ok</button>
+                <input placeholder="Pesquisar..." class="search-input" type="text" ref="searchInput" :value="search" />
+                <button @click="searchNews()" class="search-button">Ok</button>
             </div>
             <span>Pesquisas Salvas</span>
             <ul>
@@ -27,12 +27,25 @@
 <script>
 export default {
     name: 'Menu',
+    data: function(){
+        return {
+            search: null
+        }
+    },
     methods: {
         changeSection(id, title, number){
             this.$router.push({
                 name: 'newsBySection',
                 params: {id, title, number}
             })
+        },
+        searchNews(){
+            this.search = this.$refs.searchInput.value
+            this.$router.push({
+                name: 'newsBySearch',
+                params: {search: this.search}
+            })
+            this.search = null
         }
     }
 }
