@@ -29,7 +29,7 @@ export default {
 
 <style>
     .news-item{
-        margin-top: 20px;
+        margin-bottom: 20px;
     }
 
     .news-item a{

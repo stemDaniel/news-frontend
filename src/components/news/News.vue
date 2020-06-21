@@ -3,6 +3,10 @@
         <div v-if="section.title" class="page-title">
             <h1>{{section.title}} - Seção {{section.number}}</h1>
         </div>
+        <div v-if="search.title" class="search-title">
+            <div><h1>Pesquisa: {{search.title}}</h1></div>
+            <button>Salvar</button>
+        </div>
         <div class="news">
             <ul>
                 <li v-for="news in newsList" :key="news.id">
@@ -25,6 +29,7 @@ export default {
     data: function(){
         return {
             section: {},
+            search: {},
             newsList: []
         }
     },
@@ -67,12 +72,44 @@ export default {
         margin: 0;
     }
 
-    .page-title{
+    .page-title, .search-title{
+        margin-bottom: 20px;
+    }
+
+    .page-title, .search-title div, .search-title button{
         background-color: rgba(0,0,0,0.05);
         color: #000;
         border-radius: 8px;
         padding: 0px 20px;
         border: 1px solid rgba(0, 0, 0, 0.2);
         box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);
+    }
+
+    .search-title{
+        display: flex;
+    }
+
+    .search-title div{
+        flex: 1;
+        margin-right: 15px;
+    }
+
+    .search-title button{
+        width: 150px;
+        font-size: 1.5rem;
+        background-color: #C4E0E5;
+        color: #4CA1AF;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all linear 0.1s;
+    }
+
+    .search-title button:focus{
+        outline: none;
+    }
+
+    .search-title button:hover{
+        transform: scale(1.05);
+        filter: brightness(1.05);
     }
 </style>

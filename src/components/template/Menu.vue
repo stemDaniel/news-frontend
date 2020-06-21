@@ -1,9 +1,8 @@
 <template>
     <div class="menu">
         <div class="menu-searches">
-            <span>Pesquisa</span>
             <div class="search-group">
-                <input class="search-input" type="text" name="newsSearch" value="" />
+                <input placeholder="Pesquisar..." class="search-input" type="text" name="newsSearch" value="" />
                 <button class="search-button">Ok</button>
             </div>
             <span>Pesquisas Salvas</span>
@@ -45,24 +44,79 @@ export default {
         grid-area: menu;
 
         background-color: #FFF;
-        padding: 20px;
+        padding: 20px 0;
         border-left: 1px solid rgba(0, 0, 0, 0.2);
         box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);
     }
 
-    .menu-categories span{
-        font-size: 1.5rem;
+    .menu-searches, .menu-categories{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
     }
 
-    .menu-categories li{
-        font-size: 1.2rem;
-        transition: all 0.1s linear;
+    .search-group{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        margin: 0 20px 20px 20px;
     }
 
-    .menu-categories li:hover{
+    .search-group input{
+        width: 75%;
+        font-size: 1rem;
+        padding: 10px 0 10px 10px;
+        border: 2px solid #4CA1AF;
+        border-right: none;
+        border-radius: 8px 0 0 8px;
+        color: #4CA1AF;
+    }
+
+    .search-group button{
+        width: 25%;
+        padding: 10px 0;
+        font-size: 1rem;
+        margin: 0;
+        border: 2px solid #4CA1AF;
+        background: #C4E0E5;
+        color: #4CA1AF;
         font-weight: bold;
-        text-decoration: underline;
+        transition: filter 0.1s linear;
         cursor: pointer;
+    }
+
+    .search-group input:focus, .search-group button:focus{
+        outline: none;
+    }
+
+    .search-group button:hover{
+        filter: brightness(1.1);
+    }
+
+    .menu span{
+        font-size: 1.3rem;
+        color: #4CA1AF;
+        font-weight: bold;
+    }
+
+    .menu ul{
+        list-style: none;
+        padding: 0;
+    }
+
+    .menu li{
+        padding: 15px;
+        transition: all 0.2s linear;
+    }
+
+    .menu li:hover{
+        background-color: #C4E0E5;
+        font-weight: bold;
+        text-decoration: none;
+        cursor: pointer;
+        color: #4CA1AF;
     }
 
     @media(max-width: 980px){
