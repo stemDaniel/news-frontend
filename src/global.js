@@ -1,3 +1,3 @@
 module.exports = {
-    baseApiURL: 'http://localhost:3000'
+    baseApiURL: 'https://ondaniel-news-backend.herokuapp.com'
 }
