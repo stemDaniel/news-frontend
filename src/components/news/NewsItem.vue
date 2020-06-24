@@ -11,25 +11,66 @@
                 <span class="news-item-description">{{news.description}}</span>
             </div>
         </a>
+        <div class="news-item-star">
+            <i v-if="!isStarred" @click="addStarred(news.title, news.url)" class="fa fa-heart-o"></i>
+            <i v-else class="fa fa-heart"></i>
+        </div>
     </div>
 </template>
 
 <script>
+import axios from 'axios'
+import { baseApiURL } from '@/global.js'
+
 export default {
     name: 'NewsItem',
     props: ['news'],
+    computed: {
+        starredsList(){
+            return this.$store.state.starredsList
+        }
+    },
+    data(){
+        return {
+            isStarred: false
+        }
+    },
     methods: {
         getDate(date){
             const ymd = date.split('T')[0].split('-')
             return `${ymd[2]}/${ymd[1]}/${ymd[0]}`
+        },
+        addStarred(title, url){
+            axios.post(`${baseApiURL}/starreds`, { title, url })
+                .then(res => {
+                    this.$store.commit("addStarred", res.data)
+                    this.updateStars()
+                })
+        },
+        updateStars(){
+            this.starredsList.forEach(starred => {
+                if(starred.url === this.news.url){
+                    this.isStarred = true
+                    return
+                }  
+            })
         }
+    },
+    mounted(){
+        this.updateStars()
     }
 }
 </script>
 
 <style>
     .news-item{
+        display: flex;
         margin-bottom: 20px;
+        border-radius: 8px;
+        background-color: #FFF;
+        padding: 20px;
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);
     }
 
     .news-item a{
@@ -37,12 +78,7 @@ export default {
         flex-direction: row;
         text-decoration: none;
         color: #000;
-
-        border-radius: 8px;
-        background-color: #FFF;
-        padding: 20px;
-        border: 1px solid rgba(0, 0, 0, 0.2);
-        box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);
+        flex: 1;
         transition: transform 0.1s linear;
     }
 
@@ -64,6 +100,7 @@ export default {
         border-left: 1px solid rgba(0, 0, 0, 0.2);
         display: flex;
         flex-direction: column;
+        
     }
 
     .news-item-title{
@@ -72,6 +109,22 @@ export default {
 
     .news-item-font, .news-item-description{
         margin-top: 8px;
+    }
+
+    .news-item-star{
+        display: flex;
+        align-items: flex-end;
+        font-size: 2rem;
+    }
+
+    .news-item-star i{
+        cursor: pointer;
+        transition: transform 0.1s linear;
+        color: red;
+    }
+
+    .news-item-star i:hover{
+        transform: scale(1.1);
     }
 
     @media(max-width: 700px){

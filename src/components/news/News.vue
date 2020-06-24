@@ -13,12 +13,12 @@
                     <span>Pesquisas salvas</span>
                 </div>
                 <div class="popup-input-group">
-                    <input type="text" placeholder="Título do menu...">
-                    <input type="text" placeholder="Texto da pesquisa...">
+                    <input ref="searchTitle" type="text" placeholder="Título do menu...">
+                    <input ref="searchText" type="text" placeholder="Texto da pesquisa...">
                 </div>
                 <div class="popup-button-group">
                     <button @click="showSavePopup = false">Cancelar</button>
-                    <button>Ok</button>
+                    <button @click="saveSearch()">Ok</button>
                 </div>
             </div>
         </div>
@@ -35,6 +35,7 @@
 <script>
 import NewsItem from './../news/NewsItem'
 import axios from 'axios'
+import { baseApiURL } from '@/global.js'
 
 export default {
     name: 'News',
@@ -49,24 +50,39 @@ export default {
             showSavePopup: false
         }
     },
+    computed: {
+        searchesList(){
+            return this.$store.state.searchesList
+        }
+    },
     methods: {
         getNews(source = null, query = null){
-            const baseApiUrl = 'https://news-proxy.now.sh'
-            //const baseApiUrl = 'http://localhost:3000'
-            
-            if(source) axios.get(`${baseApiUrl}/api/news-by-source/${source}`).then(res => this.newsList = res.data.articles)
-            else if(query) axios.get(`${baseApiUrl}/api/news-by-search/${query}`).then(res => this.newsList = res.data.articles)
-            else axios.get(`${baseApiUrl}/api/news`).then(res => this.newsList = res.data.articles)
+            if(source) axios.get(`${baseApiURL}/news-by-source/${source}`).then(res => this.newsList = res.data.articles)
+            else if(query) axios.get(`${baseApiURL}/news-by-search/${query}`).then(res => this.newsList = res.data.articles)
+            else axios.get(`${baseApiURL}/news`).then(res => this.newsList = res.data.articles)
+        },
+        saveSearch(){
+            const title = this.$refs.searchTitle.value
+            const text = this.$refs.searchText.value
+            axios.post(`${baseApiURL}/searches`, { title, text })
+                .then(res => {
+                    this.$store.commit("addSearch", res.data)
+                    this.showSavePopup = false
+                    this.$refs.searchTitle.value = null
+                    this.$refs.searchText.value = null
+                })
         }
     },
     watch: {
         $route(to) {
             if(to.params.id){
+                this.search = {}
                 this.section.id = to.params.id
                 this.section.title = to.params.title
                 this.section.number = to.params.number
                 this.getNews(this.section.id, null)
             }else if(to.params.search){
+                this.section = {}
                 this.search.title = to.params.search
                 this.getNews(null, this.search.title)
             }else{
@@ -165,8 +181,6 @@ export default {
 
     
     .popup-body{
-        /*  */
-        /*  */
         background-color: #fff;
         width: 500px;
         border-radius: 5px;
@@ -230,5 +244,11 @@ export default {
 
     .popup-button-group button:hover{
         transform: scale(1.05);
+    }
+
+    @media(max-width: 550px){
+        .popup-body{
+            width: 90%;
+        }
     }
 </style>

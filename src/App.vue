@@ -46,11 +46,10 @@ export default {
 
 	@media(max-width: 980px){
 		.app{
-			grid-template-rows: 80px 50px 1fr;
-			grid-template-columns: 300px 1fr;
+			grid-template-rows: 80px 1fr;
+			grid-template-columns: 275px 1fr;
 			grid-template-areas: 
 				"logo header"
-				"menu menu"
 				"content content"
 			;
 		}
@@ -58,7 +57,7 @@ export default {
 
 	@media(max-width: 700px){
 		.app{
-			grid-template-columns: 100px 1fr;
+			grid-template-columns: 150px 1fr;
 		}
 	}
 </style>

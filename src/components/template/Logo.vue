@@ -1,6 +1,7 @@
 <template>
-    <div class="logo" @click="$router.push({name: 'news'})">
-        <div class="news-api-logo">
+    <div class="logo">
+        <i @click="toggleMenu" class="fa fa-bars drawer-button"></i>
+        <div class="news-api-logo"  @click="$router.push({name: 'news'})">
             News
             <span class="news-api-title">API</span>
         </div>
@@ -9,13 +10,20 @@
 
 <script>
 export default {
-    name: 'Logo'
+    name: 'Logo',
+    displayDrawer(){
+        return this.$store.state.displayDrawer
+    },
+    methods: {
+        toggleMenu(){
+            this.$store.commit("toggleMenu")
+        }
+    }
 }
 </script>
 
 <style>
     .logo{
-        cursor: pointer;
         background-color: #4CA1AF;
         filter: brightness(0.95);
         grid-area: logo;
@@ -24,7 +32,24 @@ export default {
         align-items: center;
     }
 
+    .drawer-button{
+        visibility: hidden;
+        display: none;
+        cursor: pointer;
+        font-size: 1.5rem;
+        margin: 0 25px;
+        color: #fff;
+        transition: transform 0.1s linear;
+    }
+
+    .drawer-button:active{
+        transform: rotate(90deg);
+    }
+
     .news-api-logo{
+        cursor: pointer;
+        display: flex;
+        justify-content: flex-start;
         color: #fff;
     }
 
@@ -43,6 +68,16 @@ export default {
 
     .logo img{
         width: 100%;
+    }
+
+    @media(max-width: 980px){
+        .news-api-logo{
+            flex: 1;
+        }
+        .drawer-button{
+            visibility: visible;
+            display: block;
+        }
     }
 
     @media(max-width: 700px){
