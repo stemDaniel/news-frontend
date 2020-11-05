@@ -8,7 +8,8 @@ This application is a single-page-application (SPA) made with VueJS to consume t
 
 - Display brazilian trending news;
 - To group some news by static sections;
-- To search news.
+- To search news;
+- Users can stars some news to group them such as the browser bookmarks;
 - Users can save new sections;
   - These sections are shared, so when a user changes and saves a new section, everyone else will be able to see it too.
 
