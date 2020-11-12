@@ -4,6 +4,8 @@
 
 This application is a single-page-application (SPA) made with VueJS to consume the [News API](https://newsapi.org/) and display its data.
 
+It uses this backend [News App Backend](https://github.com/stemDaniel/news-backend).
+
 ## Functions
 
 - Display brazilian trending news;
