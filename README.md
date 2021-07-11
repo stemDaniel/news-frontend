@@ -7,11 +7,11 @@
   <br>
   <br>
   <div>
-    <a href="https://img.shields.io/github/v/tag/stemDaniel/news-backend?color=%2368d391&style=for-the-badge">
-      <img src="https://img.shields.io/github/v/tag/stemDaniel/news-backend?color=%2368d391&style=for-the-badge">
+    <a href="https://img.shields.io/github/v/tag/stemDaniel/news-frontend?color=%2368d391&style=for-the-badge">
+      <img src="https://img.shields.io/github/v/tag/stemDaniel/news-frontend?color=%2368d391&style=for-the-badge">
     </a>
-    <a href="https://img.shields.io/github/license/stemDaniel/news-backend?color=%2368d391&style=for-the-badge">
-      <img src="https://img.shields.io/github/license/stemDaniel/news-backend?color=%2368d391&style=for-the-badge">
+    <a href="https://img.shields.io/github/license/stemDaniel/news-frontend?color=%2368d391&style=for-the-badge">
+      <img src="https://img.shields.io/github/license/stemDaniel/news-frontend?color=%2368d391&style=for-the-badge">
     </a>
   </div>
   <hr>
